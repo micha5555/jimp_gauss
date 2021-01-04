@@ -5,18 +5,27 @@
  * Zwraca 2 - błąd nieprawidłowych rozmiarów macierzy
  */
 int  backsubst(Matrix *x, Matrix *mat, Matrix *b) {
-				/**
-				 * Tutaj należy umieścić właściwą implemntację.
-				 */
 
-				/* To ponizej jest przepisaniem b do x. Nalezy to poprawic! */
+	int n = b->r;
+	int w, k;
 
-				int i;
-				for (i =0; i < x->r; i++) {
-								x->data[i][0] = b->data[i][0];
-				}
+	for( int i = 0; i < mat->r; i++)
+		if( mat->data[i][i] == 0 ){
+			printf("------Zero na diagonali-------\n");
+			return 1;
+			}
 
-				return 0;
+	if( mat->r != mat->c || b->r != mat->r || b->c != 1 ){
+		printf("--------Nieprawidlowa macierz-----------\n");
+		return 2;
+	}
+
+	for( w = n-1; w >= 0; w-- ){
+		double suma = 0; 
+		for( k = w +1; k < n; k++ )
+			suma += mat->data[w][k] *  x->data[k][0] ;
+	  	x->data[w][0] = ( b->data[w][0] - suma ) / mat->data[w][w];
+	}
+
+	return 0;
 }
-
-
