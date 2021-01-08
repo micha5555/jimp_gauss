@@ -27,7 +27,12 @@ int eliminate(Matrix *mat, Matrix *b){
         }
         g++;
     }
-    
+ 
+	for(ir=0, ic=0; ir<mat->r && ic<mat->c; ir++, ic++){
+    	    if(mat->data[ir][ic]==0)
+        	    return 1;
+    }
+
 		return 0;
 
 }

@@ -23,3 +23,10 @@ test5: all
 #   Test dla różnej liczby wierszy macierzy A i b
 test6: all  
 	bin/gauss dane/A_mniejsze_od_b/K dane/A_mniejsze_od_b/l
+	bin/gauss dane/C dane/d
+
+test_a: all
+	bin/gauss dane/T3/A dane/T3/b
+	echo "\nRozwiazania dla porownania wynikow otrzymanych przez program"
+	cat dane/T3/rozw
+#test dla macierzy z samymi zerami na diagonali
